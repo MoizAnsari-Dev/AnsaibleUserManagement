@@ -1,0 +1,71 @@
+---
+- name: Ensure groups exist
+  group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ users | map(attribute='groups') | flatten | unique }}"
+  become: true
+
+- name: Manage users
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups | join(',') }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    state: "{{ item.state }}"
+    create_home: yes
+  become: true
+  loop: "{{ users }}"
+  when: item.state != 'absent'
+
+- name: Remove users if state is absent
+  user:
+    name: "{{ item.name }}"
+    state: absent
+    remove: yes
+  become: true
+  loop: "{{ users }}"
+  when: item.state == 'absent'
+
+- name: Ensure .ssh directory exists for each user
+  file:
+    path: "/home/{{ item.name }}/.ssh"
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0700'
+  become: true
+  loop: "{{ users }}"
+  when: item.state == 'present'
+
+- name: Deploy SSH keys
+  copy:
+    src: "authorized_keys/{{ item.ssh_key }}"
+    dest: "/home/{{ item.name }}/.ssh/authorized_keys"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0600'
+  become: true
+  loop: "{{ users }}"
+  when:
+    - item.ssh_key is defined
+    - item.state == 'present'
+
+- name: Grant sudo access
+  lineinfile:
+    dest: /etc/sudoers.d/{{ item.name }}
+    line: "{{ item.name }} ALL=(ALL) NOPASSWD:ALL"
+    create: yes
+    owner: root
+    group: root
+    mode: '0440'
+  become: true
+  loop: "{{ users }}"
+  when: item.sudo | default(false)
+
+- name: Remove sudo access for non-sudo users
+  file:
+    path: /etc/sudoers.d/{{ item.name }}
+    state: absent
+  become: true
+  loop: "{{ users }}"
+  when: not item.sudo | default(false)
