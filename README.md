@@ -1,5 +1,13 @@
 # AnsaibleUserManagement
  ### Automate user management, group access, and software installation across multiple Linux servers using Ansible.
+ <img width="891" height="452" alt="image" src="https://github.com/user-attachments/assets/bbe53837-86f9-42f4-817a-7b95081611a5" />
+ <img width="1920" height="899" alt="image" src="https://github.com/user-attachments/assets/c26d7957-2c10-4e56-b7a7-5e315c2315cf" />
+ <img width="1917" height="980" alt="image" src="https://github.com/user-attachments/assets/d684c503-cc13-40eb-8277-cc895ebecb5e" />
+<img width="1917" height="865" alt="image" src="https://github.com/user-attachments/assets/d305af9d-1b73-44a5-a285-167876bd60a8" />
+
+
+
+
 ---
 ## Project Overview
 
