@@ -1,6 +1,0 @@
----
-- name: User Management Automation
-  hosts: all
-  become: yes
-  roles:
-    - users
