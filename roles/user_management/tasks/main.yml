@@ -1,0 +1,17 @@
+---
+- name: Create groups
+  ansible.builtin.group:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ groups_to_create }}"
+  become: true
+
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    group: "{{ item.group }}"
+    state: present
+    shell: /bin/bash
+    create_home: yes
+  loop: "{{ users_to_create }}"
+  become: true

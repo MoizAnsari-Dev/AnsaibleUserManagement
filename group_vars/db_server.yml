@@ -1,0 +1,13 @@
+groups_to_create:
+  - name: dbadmins
+  - name: dbbackup
+
+users_to_create:
+  - name: arjun
+    group: dbadmins
+  - name: amit
+    group: dbbackup
+
+apps_to_install:
+  - postgresql
+  - python3-psycopg2

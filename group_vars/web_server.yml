@@ -1,0 +1,13 @@
+groups_to_create:
+  - name: webadmins
+  - name: developers
+
+users_to_create:
+  - name: moiz
+    group: webadmins
+  - name: rahul
+    group: developers
+
+apps_to_install:
+  - nginx
+  - git

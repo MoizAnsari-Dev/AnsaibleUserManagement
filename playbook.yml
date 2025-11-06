@@ -1,0 +1,7 @@
+---
+- name: Manage users, groups, and applications
+  hosts: all
+  become: true
+  roles:
+    - user_management
+    - install_app

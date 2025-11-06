@@ -1,0 +1,6 @@
+---
+- name: Install required applications
+  ansible.builtin.package:
+    name: "{{ apps_to_install }}"
+    state: present
+  become: true
