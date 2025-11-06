@@ -2,5 +2,5 @@
 - name: Install required applications
   ansible.builtin.package:
     name: "{{ apps_to_install }}"
-    state: present
+    state: "{{ item.state | default('present') }}"
   become: true

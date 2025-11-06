@@ -16,4 +16,7 @@ users_to_create:
 
 apps_to_install:
   - nginx
+    state: present
+    
   - git
+    state: present

@@ -16,4 +16,7 @@ users_to_create:
     
 apps_to_install:
   - postgresql
+    state: present
+    
   - python3-psycopg2
+    state: present
