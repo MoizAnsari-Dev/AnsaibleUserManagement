@@ -29,35 +29,17 @@ It’s designed using modular Ansible roles, allowing fine-grained control over:
 ---
 ## Folder Structure
 ```
-user-management/
-│
-├── inventories/
-│   └── hosts.ini               # Target servers list
-│
+ansible-user-group/
+├── inventory.ini
+├── playbook.yml
 ├── group_vars/
-│   ├── all.yml                 # Common users & packages
-│   ├── web_servers.yml         # Users & packages for web servers
-│   ├── db_servers.yml          # Users & packages for DB servers
-│   └── cache_servers.yml       # Users & packages for cache servers
-│
-├── host_vars/
-│   └── node3.yml               # Host-specific overrides (optional)
-│
-├── roles/
-│   ├── users/
-│   │   ├── tasks/
-│   │   │   └── main.yml        # User & group management logic
-│   │   └── files/
-│   │       └── authorized_keys/
-│   │           ├── devops.pub
-│   │           ├── webadmin.pub
-│   │           └── dbadmin.pub
-│   │
-│   └── software/
-│       └── tasks/
-│           └── main.yml        # Software installation logic
-│
-└── playbook.yml                # Main Ansible playbook
+│   ├── web_server.yml
+│   └── db_server.yml
+└── roles/
+    ├── user_management/
+    │   └── tasks/main.yml
+    └── install_app/
+        └── tasks/main.yml
 
 ```
 
