@@ -4,4 +4,4 @@
   become: true
   roles:
     - user_management
-    - install_app
+    # - install_app

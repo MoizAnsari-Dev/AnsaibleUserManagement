@@ -1,12 +1,18 @@
 groups_to_create:
-  - name: webadmins
-  - name: developers
+  - name: webadmins # Web administration group
+    state: present
+
+  - name: developers # Development group
+    state: present
 
 users_to_create:
-  - name: moiz
+  - name: moiz # Web admin user
     group: webadmins
-  - name: rahul
+    state: present
+
+  - name: rahul # Developer user
     group: developers
+    state: present
 
 apps_to_install:
   - nginx

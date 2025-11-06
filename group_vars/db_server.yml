@@ -1,13 +1,19 @@
 groups_to_create:
-  - name: dbadmins
-  - name: dbbackup
+  - name: dbadmins # Database administration group
+    state: present
+
+  - name: dbbackup # Database backup group
+    state: present
 
 users_to_create:
-  - name: arjun
+  - name: arjun # DB admin user
     group: dbadmins
-  - name: amit
-    group: dbbackup
+    state: present
 
+  - name: amit # DB backup user
+    group: dbbackup
+    state: present
+    
 apps_to_install:
   - postgresql
   - python3-psycopg2

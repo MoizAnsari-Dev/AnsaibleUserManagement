@@ -2,7 +2,7 @@
 - name: Create groups
   ansible.builtin.group:
     name: "{{ item.name }}"
-    state: present
+    state: "{{ item.state | default('present') }}"
   loop: "{{ groups_to_create }}"
   become: true
 
@@ -10,7 +10,7 @@
   ansible.builtin.user:
     name: "{{ item.name }}"
     group: "{{ item.group }}"
-    state: present
+    state: "{{ item.state | default('present') }}"
     shell: /bin/bash
     create_home: yes
   loop: "{{ users_to_create }}"
